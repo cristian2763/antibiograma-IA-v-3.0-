@@ -20,15 +20,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          # Hemos quitado la línea de caché que causaba error
+
       - name: Install dependencies
-        run: npm ci
+        run: npm install  # Cambiado de 'npm ci' a 'npm install' para que no falle sin el lockfile
+
       - name: Build
         run: npm run build
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
