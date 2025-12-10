@@ -1,3 +1,4 @@
+
 name: Deploy to GitHub Pages
 
 on:
@@ -25,10 +26,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          # Hemos quitado la línea de caché que causaba error
+          # Quitamos la línea de cache para evitar el error del lock file
 
       - name: Install dependencies
-        run: npm install  # Cambiado de 'npm ci' a 'npm install' para que no falle sin el lockfile
+        # USAMOS 'install' EN LUGAR DE 'ci' PARA QUE CREE EL LOCKFILE FALTANTE
+        run: npm install
 
       - name: Build
         run: npm run build
